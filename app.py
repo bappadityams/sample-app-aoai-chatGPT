@@ -12,6 +12,8 @@ from flask_session import Session
 
 import app_config
 
+__version__ = "0.7.0"  # The version of this sample, for troubleshooting purpose
+
 from backend.auth.auth_utils import get_authenticated_user_details
 from backend.history.cosmosdbservice import CosmosConversationClient
 
@@ -35,8 +37,6 @@ auth = identity.web.Auth(
 def login():
     return render_template("login.html", version=__version__, **auth.log_in(
         scopes=app_config.SCOPE, # Have user consent to scopes during log-in
-        redirect_uri=url_for("auth_response", _external=True), # Optional. If present, this absolute URL must match your app's redirect_uri registered in Azure Portal
-        prompt="select_account",  # Optional. More values defined in  https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
         ))
 
 
