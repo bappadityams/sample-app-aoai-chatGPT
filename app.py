@@ -6,9 +6,9 @@ import openai
 import copy
 from azure.identity import DefaultAzureCredential
 from base64 import b64encode
-from flask import Flask, Response, request, jsonify,render_template, send_from_directory
+from flask import Flask, Response,redirect, request, jsonify,session,render_template, send_from_directory,url_for
 from dotenv import load_dotenv
-from flask_session import Session
+import identity.web
 
 import app_config
 
@@ -22,7 +22,7 @@ load_dotenv()
 app = Flask(__name__, static_folder="static")
 app.config.from_object(app_config)
 assert app.config["REDIRECT_PATH"] != "/", "REDIRECT_PATH must not be /"
-Session(app)
+
 
 app.jinja_env.globals.update(Auth=identity.web.Auth)  # Useful in template for B2C
 auth = identity.web.Auth(
@@ -56,7 +56,7 @@ def logout():
 # Static Files
 @app.route("/")
 def index():
-     if not (app.config["CLIENT_ID"] and app.config["CLIENT_SECRET"]):
+    if not (app.config["CLIENT_ID"] and app.config["CLIENT_SECRET"]):
         # This check is not strictly necessary.
         # You can remove this check from your production code.
         return render_template('config_error.html')
