@@ -31,5 +31,5 @@ jobs:
   
     - name: Deploy Bicep file  
       run: |  
-        az deployment sub create --location eastus --template-file ./infra/main.bicep  --parameters @main.parameter.json
+        az deployment sub create --location eastus --template-file ./infra/main.bicep  --parameters @main.parameters.json
      
