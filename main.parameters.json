@@ -13,6 +13,9 @@
   },
   "location": {
     "value": "eastus2"  
-  }  
+  },
+  "principalId": {
+    "value": "1eaf02b4-5bb5-4fe4-ab62-bc23400347cc"
+  }
  }
 }
