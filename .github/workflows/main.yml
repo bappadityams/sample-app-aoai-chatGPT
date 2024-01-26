@@ -27,7 +27,7 @@ jobs:
   
     - name: Validate Bicep file  
       run: |  
-        bicep build main.bicep  
+        bicep build ./infra/main.bicep  
   
     - name: Deploy Bicep file  
       run: |  
