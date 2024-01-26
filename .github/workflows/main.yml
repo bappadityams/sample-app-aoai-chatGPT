@@ -31,5 +31,5 @@ jobs:
   
     - name: Deploy Bicep file  
       run: |  
-        az deployment sub create --location eastus --template-file ./infra/main.bicep  --parameters 'authClientId=e71e0f15-47d7-4d07-9940-c23adfa9bcde authClientSecret=Npy8Q~Yqf9yYe5Ny58C2R6mRO7zz660EV_4ezb_d environmentName=dev location=eastus'
+        az deployment sub create --location eastus --template-file ./infra/main.bicep  --parameters @main.parameter.json
      
